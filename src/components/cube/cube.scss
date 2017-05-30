@@ -1,0 +1,61 @@
+$colours: rgba(100, 100, 100, 0.7), rgba(240, 100, 100, 0.7), rgba(100, 240, 100, 0.7), rgba(100, 100, 240, 0.7), rgba(240, 240, 100, 0.7), rgba(100, 240, 240, 0.7);
+$transforms: rotateY(0deg), rotateX(180deg), rotateY(-90deg), rotateY(90deg), rotateX(-90deg), rotateX(90deg);
+$transformsMove: rotateY(0deg), rotateX(180deg), rotateY(90deg), rotateY(-90deg), rotateX(90deg), rotateX(-90deg);
+$sizeCube: 200px;
+
+div.container {
+    width: 100%;
+    & div.cubeContainer {
+        perspective: 600px;
+        width: $sizeCube;
+        height: $sizeCube;
+        margin: 80px auto;
+        * {
+            box-sizing: border-box;
+        }
+        & > div.cube {
+            position: relative; 
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            width: 100%;
+            height: 100%;
+            & > div {
+                display: flex;
+                position: absolute;
+                width: $sizeCube;
+                height: $sizeCube;
+                border: 2px solid black;
+                justify-content: center;
+                align-items: center;
+                font-size: 100px;
+                font-weight: bold;
+            }
+            @for $i from 1 through 6 {
+                & > div.slide#{$i} {
+                    transform: nth($transforms, $i) + translateZ(100px);
+                    background-color: nth($colours, $i);
+                }
+            }
+            @for $i from 1 through 6 {
+                &.side#{$i} {
+                    transform: nth($transformsMove, $i);
+                }
+            }
+        }
+    }
+    & div.sides {
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        & > label {
+            font-weight: bold;
+            align-items: center;
+            text-transform: capitalize;
+            & > input[name="cube"] {
+                margin: 0px 5px;
+            }
+        }
+    }
+}
