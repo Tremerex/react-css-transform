@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Clock</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        padding: 0;
+        color: black;
+      }
+      body {
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+      #clock {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 4px solid black;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin: 20px auto;
+      } 
+      #clock > div {
+        display: flex;
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: bold;
+      }
+      #clock > div[id^=handle] {
+        position: absolute;
+        border-radius: 50%;
+        transform-origin: 50% 100%;
+        visibility: hidden;
+      }
+      div#handleSeconds {
+        border: 1px solid rgba(50, 50, 50, .5);
+        width: 1px;
+        height: 55px;
+      }
+      div#handleMinutes {
+        border: 2px solid rgba(10, 10, 10, .8);
+        width: 4px;
+        height: 50px;
+      }
+      div#handleHours {
+        border: 3px solid rgba(0, 0, 0, .9);
+        width: 6px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body onload="start()">
+    <div>
+      <div id="clockContainer">
+        <div id="clock">
+          <div id="handleSeconds" style="transform: translateY(-50%) rotateZ(0deg);"></div>
+          <div id="handleMinutes" style="transform: translateY(-50%) rotateZ(0deg);"></div>
+          <div id="handleHours" style="transform: translateY(-50%) rotateZ(0deg);"></div>
+          <div style="transform: rotateZ(30deg)">1</div>
+          <div style="transform: rotateZ(60deg)">2</div>
+          <div style="transform: rotateZ(90deg)">3</div>
+          <div style="transform: rotateZ(120deg)">4</div>
+          <div style="transform: rotateZ(150deg)">5</div>
+          <div style="transform: rotateZ(180deg)">6</div>
+          <div style="transform: rotateZ(210deg)">7</div>
+          <div style="transform: rotateZ(240deg)">8</div>
+          <div style="transform: rotateZ(270deg)">9</div>
+          <div style="transform: rotateZ(300deg)">10</div>
+          <div style="transform: rotateZ(330deg)">11</div>
+          <div style="transform: rotateZ(0deg)">12</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var seconds = null;
+      var minutes = null;
+      var hours = null;
+      function move() {
+        var date = new Date();
+        seconds.style.transform = 'translateY(-50%) rotateZ(' + (6 * date.getSeconds()) + 'deg)';
+        minutes.style.transform = 'translateY(-50%) rotateZ(' + (6 * date.getMinutes()) + 'deg)';
+        hours.style.transform = 'translateY(-50%) rotateZ(' + (30 * (date.getHours() + 1)) + 'deg)';
+      }
+      function showHandles() {
+        seconds.style.visibility = "visible";
+        minutes.style.visibility = "visible";
+        hours.style.visibility = "visible";
+      }
+      function start() {
+        seconds = document.getElementById('handleSeconds');
+        minutes = document.getElementById('handleMinutes');
+        hours = document.getElementById('handleHours');
+        setTimeout(showHandles, 1000);
+        var startInterval = setInterval(move, 1000);
+      }
+    </script>
+  </body>
+</html>
