@@ -17,7 +17,8 @@ export default class Clock extends Component {
         this.setState({
             seconds: time.getSeconds(),
             minutes: time.getMinutes(),
-            hours: (time.getHours() + 1)
+            hours: (time.getHours() + 1),
+            time: null
         });
     }
     componentWillMount() {
@@ -29,7 +30,7 @@ export default class Clock extends Component {
     }
     render() {
         return (
-            <div className={clockStyle.clockContainer}>
+            <div className={clockStyle.clockContainer} data-qa-id="clockContainer">
                 <div className={clockStyle.clock}>
                     <div className={clockStyle.handleSeconds} style={{transform: `translateY(-50%) rotateZ(${this.state.seconds * 6}deg)`}}></div>
                     <div className={clockStyle.handleMinutes} style={{transform: `translateY(-50%) rotateZ(${this.state.minutes * 6}deg)`}}></div>

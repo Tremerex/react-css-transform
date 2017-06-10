@@ -14,7 +14,7 @@ export default class Cube extends Component {
     render() {
         return (
             <div className={cubeStyle.container}>
-                <div className={cubeStyle.cubeContainer}>
+                <div className={cubeStyle.cubeContainer} data-qa-id="cubeContainer">
                     <div className={this.state.cubeClassName}>
                     { 
                         [...Array(6)].map((x, i) => (
@@ -25,7 +25,7 @@ export default class Cube extends Component {
                     }
                     </div>
                 </div>
-                <div className={cubeStyle.sides}>
+                <div className={cubeStyle.sides} data-qa-id="cubeChecksContainer">
                     {
                         [...Array(6)].map((x, i) => (
                             <label key={i}> side {i + 1}

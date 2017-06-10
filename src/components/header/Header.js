@@ -9,12 +9,12 @@ const Header = (props) => {
             <nav>
                 <ul className={headerStyle.mainNav}>
                     <li>
-                        <Link to='/' className={path === '/' ? headerStyle.active : ''}>
+                        <Link to='/' className={path === '/' ? headerStyle.active : ''} data-qa-id="cubeLink">
                             Cube
                         </Link>
                     </li>
                     <li>
-                        <Link to='/clock' className={path === '/clock' ? headerStyle.active : ''}>
+                        <Link to='/clock' className={path === '/clock' ? headerStyle.active : ''} data-qa-id="clockLink">
                             Clock
                         </Link>
                     </li>
